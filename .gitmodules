@@ -1,0 +1,3 @@
+[submodule "study_deeplearning/exercise/dl_ml_sc_tutorial/statistics/modules"]
+	path = study_deeplearning/exercise/dl_ml_sc_tutorial/statistics/modules
+	url = https://github.com/mickeyjap182/modules.git
