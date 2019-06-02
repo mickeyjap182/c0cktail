@@ -1,10 +1,5 @@
 import sys
-
-class StopWatch():
-    def __init__(self):
-        ''' TODO: implements a stop watch. '''
-        self.start = 0
-        pass
+from lib import StopWatch
 
 class Sorter():
     def __init__(self, data:list):
@@ -31,4 +26,7 @@ if __name__ == '__main__' :
     default = [3, 2, 8, 1, 4]
     args = list(map(lambda x: int(x), sys.argv[1:])) if len(sys.argv) > 1 else default
     s = Sorter(args)
+    w = StopWatch()
     print(s.bubble())
+    import time as t; t.sleep(1)
+    print(w.elapsed_sec())

@@ -2,6 +2,7 @@
 # unit is max members per a table.
 # unit, guests = 10, 100
 unit, guests = 5, 13
+cache = [[0] * (unit + 1)] * (guests + 1)
 # We assign guests to tables.
 def assign(leftover, down_limit):
     if leftover < 0 :
@@ -22,4 +23,6 @@ def assign(leftover, down_limit):
 print([s for s in range(2, 10, 1)])
 # ret = assign(guests, 2)
 
+# cache[2] = 4
+print(cache)
 # print(ret)
