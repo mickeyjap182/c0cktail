@@ -13,6 +13,13 @@ ENV LC_ALL ja_JP.UTF-8
 ENV TZ JST-9
 ENV TERM xterm
 
+wget http://repo.mosquitto.org/debian/mosquitto-repo.gpg.key
+apt-key add mosquitto-repo.gpg.key
+wget http://repo.mosquitto.org/debian/mosquitto-jessie.list -O /etc/apt/sources.list.d/mosquitto-jessie.list
+mosquitto : Depends: libssl1.0.0 (>= 1.0.0) but it is not installable
+             Depends: libwebsockets3 (>= 1.2) but it is not installable
+E: Unable to correct problems, you have held broken packages.
+
 RUN apt-get install -y vim less fish mosquitto
 RUN pip install --upgrade pip
 RUN pip install --upgrade setuptools

@@ -1,0 +1,256 @@
+▲deeplerning
+
+▲キーワード
+・機械学習=教師あり学習、教師なし学習
+  強化学習（ゴール達成時の振り返りにおいて、ゴール達成への報酬値を数値で表し、最大になるようにする）
+・パーセプトロン...感覚・連合・出力の３層構造のニューラルネットワーク(入力・出力の二層は単純パーセプトロン)
+  多層パーセプトロン...間に隠れ層があり、最適な出力をするようにしたもの。
+・クラス分類問題...集団分類の意思決定、
+
+・活性化関数
+  ソフトマックス関数...シグモイド関数を3クラス以上にクラス分類できるようにしたもの
+  シグモイド関数...生物の神経細胞が持つ性質をモデル化したもの(tanah(ax/2)+1)/2 (a(ゲイン)=1が標準シグモイド関数)
+
+・非線形活性化関数(ガウシアンRBFなど)
+・equentialモデル
+-- ネットワークを1列に積み重ねていく(単純に層を重ねるモデル)
+
+・Functional API モデル
+-- 複数の出力や共有レイヤーの定義等が可能
+
+▲使用するライブラリ
+・jupyter notebook...ブラウザ上で実行する環境
+・Matplotlib...MatPlotlib グラフ描画のライブラリ
+・Numpy...数値計算ライブラリ
+・Pandas...様々な形式のデータ入出力ライブラリ
+・OpenCV...画像処理ライブラリ
+・scikit-learn...機械学習ライブラリ
+
+▲
+
+
+▲docker
+docker hub からPythonの環境をダウンロード
+https://hub.docker.com/_/python/
+
+sudo docker run -it -p 3001:3000 -v /Users/toyamayoshitaka/Documents/sample/docker:/var/app --name "analysys" 1e80caffd59e /bin/bash
+
+jupyter notebook --port 3000
+ac6565722b63:ee7ebcb927ca455f1a9f5a59cbd14e7454b43532
+
+jupyter notebook --allow-root
+
+・docker に入れるもの
+-- r言語
+-- anaconda
+-- keras
+
+
+
+
+▲conda install
+
+https://linuxhint.com/install-anaconda-centos7/
+
+ bash Anaconda3-5.0.1-Linux-x86_64.sh
+ #シェルのパスを追加する。
+
+ source ~/.bashrc
+
+ # anacondaのバージョンを確認
+ conda --versions
+
+ conda update conda
+
+ # anacondaのパッケージを確認
+ conda list
+
+ # 環境一覧
+ conda info -e
+
+ # 環境の有効化・無効化
+ conda deactivate
+ conda activate insector
+
+ conda create -n insector python=3.7
+
+ # ライブラリインストール
+ conda install -y numpy
+
+ conda install -y matplotlib
+
+1.jupyter を使用する
+ # jupyter notebook
+ 別サーバで動かす場合は、パスワードの鍵を作って動作させる。
+ ~/.jupyter/jupyter_notebook_config.py
+ https://qiita.com/joemphilips/items/de5d12723b9b88b5b090
+
+2.教師データ作成
+ # 教師データ
+ 画像をみて、機会学習に導入する部分がある
+ 0 いる　１いない でデータを作る
+
+ id, kabuto, kamakiri, kuwa
+ 0, 1, 0, 0
+ 1, 0, 0, 1
+ 2, 1, 1, 0
+
+3.
+ # opencvによる画像解析
+
+ # opencv インポート
+ import cv2
+ # グレースケールで読み出した画像を別名で保存
+ img  = cv2.image('img/00.png', cv2.IMREAD_GRAYSCALE)
+ cv2.imwrite('gray.png', img)
+ cv2.COLOR_BGR2GRAY
+
+ Python×AI・機械学習入門編1: 機械学習の概要を知ろう
+画像から特微量を知ろうについて 演習1で気がついたのですが、
+グレースケールの取得方法は、以下ではないでしょうか。
+(Attribute Errorになり実行できなかったため)
+
+(誤)
+img = cv2.imread("image.png", cv2.IMREAD_GRAYSCALE)
+ ↓
+(正)
+img = cv2.imread("image.png", cv2.COLOR_BGR2GRAY)
+
+ # 画像ピクセルの２次元配列の値、サイズを確認
+ print(img)
+ print(img.shape)
+ print(img.ravel().shape) # 1次元配列にできる
+
+ ＃そのまま使っても精度が悪い
+
+ # ヒストグラム(同じ色のピクセルの出現率)で判断する
+ # plt.bar(x軸データ(階級),y軸データ(度数))　でヒストグラフ描画
+ import cv2
+ import nampy as np
+ imort matlabplot as plt
+
+ def plot_hist(img):
+   img_hist = np.histgram(img.ravel(),256, [0, 256])
+   hist = img_hist[0]
+
+   plt.bar(np.arange(256), hist)
+   plt.show()
+
+ # それぞれの比較
+ plot_hist(cv2.imread('image/a.png'))
+ plot_hist(cv2.imread('image/b.png'))
+ plot_hist(cv2.imread('image/c.png'))
+
+
+########################
+画像ベクトルによる機械学習
+########################
+
+import cv2
+import numpy as np
+from matplotlib import pyplot as plt
+import pandas as pd
+
+# 教師データ読み込み(画像についてあるなしをつけたもの100件)
+targets_data = pd.read_csv("y_classified.csv")
+print(targets_data['Rokumura'])
+
+# 画像イメージ(100件)を読み込む
+images = []
+for i in range(100):
+    file = ("images/%03d.png" % (i))
+    img = cv2.imread(file, cv2.IMREAD_GRAYSCALE)
+    images.append(img)
+
+
+# 教師データを画像イメージに合わせて1次元配列へ変換
+images_data = np.empty((100, len(images[0].ravel())), int)
+for i in range(100) :
+    images_data[i] = np.array([images[i].ravel()])
+
+# (100, 163125)と出力されるため163125の長さの画像が100あることを確認
+print(images_data.shape)
+
+
+# x 特徴ベクトル y 期待する分類結果が入る(train=学習データ, test=テストデータ)
+import sklearn
+from sklearn.model_selection import train_test_split
+from sklearn.neighbors import KNeighborsClassifier
+x_train, x_test, y_train, y_test = train_test_split(images_data, targets_data['Kirishima'], random_state=0)
+
+# 分類データの確認(100このデータが75の教師データと25のテストデータに分かれていることを確認)
+print(x_train.shape)
+print(x_test.shape)
+print(y_train.shape)
+print(y_test.shape)
+
+
+# 機械学習アルゴリズムに学習させる。（分類ありの教師あり学習アルゴリズム）
+# x=入力データとy=出力データを与える
+knn = KNeighborsClassifier(n_neighbors=1)
+knn.fit(x_train, y_train)
+
+# 予測結果の確認(誤った結果)
+print(knn.predict(np.array([x_test[0]])))
+print(y_test)
+
+# 予測結果の確認2
+print(knn.predict(np.array([x_test[0],x_test[1], x_test[2], x_test[3]])))
+print(y_test)
+
+# 予測結果の全確認
+y_pred =knn.predict(np.array(x_test))
+print(y_pred)
+
+# 正解率の確認(0.6)
+print(np.mean(y_pred == y_test))
+
+########################
+画像ヒストグラムによる機械学習
+########################
+
+# pandasによるCSV読み込み
+import cv2
+import numpy as np
+from matplotlib import pyplot as plt
+import pandas as pd
+
+targets_data = pd.read_csv('y_classified.csv')
+
+#イメージをグレースケールで読み込み、画像のヒストグラムのデータ列を追加する。(長さ256の特徴ベクトルが100セットある)
+images_data = np.empty((0, 256), int)
+for i in range(100):
+    png = ('images/%03d.png' % (i))
+    img = cv2.imread(png, cv2.IMREAD_GRAYSCALE)
+    hist = np.histogram(img.ravel(), 256, [0, 256])
+    images_data = np.append(images_data, np.array([hist[0]]), axis=0)
+print(images_data.shape)
+
+# x 特徴ベクトル y 期待する分類結果が入る(train=学習データ, test=テストデータ)
+import sklearn
+from sklearn.model_selection import train_test_split
+from sklearn.neighbors import KNeighborsClassifier
+
+# 分類データの確認(100のデータが75の教師データと25のテストデータに分かれていることを確認)
+x_train, x_test, y_train, y_test = train_test_split(images_data, targets_data['Kirishima'])
+
+print(x_train.shape)
+print(x_test.shape)
+print(y_train.shape)
+print(y_test.shape)
+
+# 機械学習アルゴリズムに学習させる。（分類ありの教師あり学習アルゴリズム）
+# x=入力データとy=出力データを与える
+knn = KNeighborsClassifier(n_neighbors=1)
+knn.fit(x_train, y_train)
+
+# 予測結果の確認
+print(knn.predict(np.array([x_test[0]])))
+print(y_test)
+
+# 全ての予測結果と正解率確認(0.76なので上昇？)
+y_pred = knn.predict(x_test)
+print(y_pred)
+print(np.mean(y_pred == y_test))
+
+# K近傍法
