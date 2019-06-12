@@ -20,13 +20,16 @@ mosquitto : Depends: libssl1.0.0 (>= 1.0.0) but it is not installable
              Depends: libwebsockets3 (>= 1.2) but it is not installable
 E: Unable to correct problems, you have held broken packages.
 
-RUN apt-get install -y vim less fish mosquitto
+RUN apt-get install -y vim less fish mosquitto tar
 RUN pip install --upgrade pip
 RUN pip install --upgrade setuptools
 RUN apt-get install -y wget
 RUN wget -P ~/ https://repo.anaconda.com/archive/Anaconda3-2019.03-Linux-x86_64.sh
 RUN bash ~/Anaconda*.sh -b -p $HOME/anaconda
 RUN eval "$(~/anaconda/bin/conda shell.bash hook)"
+
+RUN wget https://julialang-s3.julialang.org/bin/linux/x64/1.1/julia-1.1.1-linux-x86_64.tar.gz
+RUN tar xvfz julia-1.1.1-linux-x86_64.tar.gz
 
 RUN apt-get -y install nginx
 ENTRYPOINT /usr/sbin/nginx -g 'daemon off;' -c /etc/nginx/nginx.conf
@@ -43,4 +46,3 @@ CMD ["nginx"]
 
 # Expose ports.
 EXPOSE 80
-EXPOSE 443
