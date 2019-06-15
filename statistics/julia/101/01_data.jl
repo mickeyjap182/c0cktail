@@ -41,6 +41,24 @@ _num = 3e10
 _num = 2.5e-4
 @printf("e-notation   is %.5f \n", _num)
 
+@printf("==specialtype==\n")
+print("typemin(Int64):", typemin(Int64), "\n")
+print("typemax(Int64):", typemax(Int64), "\n")
+print("Nan:", NaN, "\n")
+print("NaN/NaN:", NaN/ NaN, "\n")
+print("NaN + 1:", NaN + 1, "\n")
+print("Inf:", Inf, "\n")
+print("Inf - Inf:", Inf - Inf, "\n")
+print("1/Inf:", 1/ Inf, "\n")
+print("Inf/Inf:", Inf/ Inf, "\n")
+print("NaN + Inf:", NaN + Inf, "\n")
+
+@printf("==specialtype==\n")
+print("eps(4.0) # must be float type:", eps(100.0), "\n")
+print("eps(Float32) :", eps(Float32), "\n")
+print("typemax(Int32) :", typemax(Int32), "\n")
+
+
 @printf("-----list-----\n")
 for i in [1, 13, 4, 7, 13,2,3,  9,  4, 1]
     print(i)
