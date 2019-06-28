@@ -1,2 +1,8 @@
 .DS_Store
 .gitmodules
+/project/*
+!/project/.gitkeep
+/practice/scala_101/00_hello/project/*
+!/practice/scala_101/00_hello/project/.gitkeep
+/practice/scala_101/00_hello/target/*
+!/practice/scala_101/00_hello/target/.gitkeep
