@@ -7,4 +7,4 @@ import numpy as np
 class FuncExercise():
 
     def quadratic():
-        pass
+        retrun 'aaa'
