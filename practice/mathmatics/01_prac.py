@@ -18,13 +18,18 @@ class Functions():
         return sym.Derivative(expr).doit()
 
 
+# 特定の記号を数学的な変数として扱う。
 a, x = sym.symbols("a  x")
 
 # 二次関数を解く
+print("==二次関数式:{expr}==".format(expr="y=0^2 + 3*0 + 2"))
 print(Functions.quadratic(0))
+print("==二次関数式:{expr}==".format(expr="y=4^2 + 3x4 + 2"))
 print(Functions.quadratic(4))
+print("==二次関数式:{expr}==".format(expr="y=a^2 + 3xa + 2"))
 expr = Functions.quadratic(a)
 print(expr)
 
 # 微分を解く
+print("==微分式:{expr}==".format(expr="x ^ 2"))
 print(Functions.derivative(x**2))
