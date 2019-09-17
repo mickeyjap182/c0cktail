@@ -29,6 +29,6 @@ func main() {
     // Sub struct 'Player' is able to call 'Character''s function.
     var user = player.Viewstatus()
     fmt.Println(user)
-
+    fmt.Println("==stop==\n")
 }
 
