@@ -1,5 +1,6 @@
 .DS_Store
 .gitmodules
+/practice/js/node101/*/node_modules/*
 /project/*
 !/project/.gitkeep
 /practice/scala_101/00_hello/project/*
