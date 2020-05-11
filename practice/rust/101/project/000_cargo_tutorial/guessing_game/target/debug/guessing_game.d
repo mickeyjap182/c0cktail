@@ -1,0 +1,1 @@
+/Users/yoshitaka.toyama/Documents/private/c0cktail/practice/rust/101/project/000_cargo_tutorial/guessing_game/target/debug/guessing_game: /Users/yoshitaka.toyama/Documents/private/c0cktail/practice/rust/101/project/000_cargo_tutorial/guessing_game/src/main.rs
