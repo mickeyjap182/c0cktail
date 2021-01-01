@@ -17,3 +17,9 @@ class PerceptronTest(unittest.TestCase):
         self.assertEqual(AND(0.7, 0.7), 0)
 
         self.assertEqual(AND(0.8, 0.8), 1)
+
+
+
+
+
+        self.assertTrue(True)
