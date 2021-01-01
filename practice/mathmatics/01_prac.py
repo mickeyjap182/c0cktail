@@ -30,6 +30,10 @@ print("==二次関数式:{expr}==".format(expr="y=a^2 + 3xa + 2"))
 expr = Functions.quadratic(a)
 print(expr)
 
+
 # 微分を解く
 print("==微分式:{expr}==".format(expr="x ^ 2"))
 print(Functions.derivative(x**2))
+
+print("==微分式:{expr}==".format(expr="x ^ 2"))
+print(Functions.derivative(x**4 + x*6 + 3 ))

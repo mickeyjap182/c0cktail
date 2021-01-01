@@ -8,3 +8,4 @@
 /practice/scala_101/00_hello/target/*
 !/practice/scala_101/00_hello/target/.gitkeep
 .idea
+__pycache__/*

@@ -69,6 +69,12 @@ nofactorial n = product [1..n]
 factorial :: Integer -> Integer
 factorial n = product [1..n]
 
+-- pattern match
+isLuckry :: Int -> String
+isLuckry n = n |
+    7 = "Lucky!"
+    x = "Great!"
+
 
 
  

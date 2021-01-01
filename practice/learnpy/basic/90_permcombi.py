@@ -21,3 +21,7 @@ class Pattern:
 
 p = Pattern()
 p.testAAA()
+print("aaa")
+
+a = lambda x: x+2
+print(a(2))

@@ -1,31 +1,29 @@
 import os
 import sys
+from audioop import reverse
+from pprint import pprint
 
-class Mem():
-    def __init__(self, x, y):
-        self.x = x
-        self.y = y
+print("=== begin python zen ==")
+import this
+print("=== end python zen ==")
 
-def change(obj, x):
+# animation
+# import antigravity
 
-    if type(obj) == 'Mem':
-        obj.x = x
-    elif type(obj) == 'dict':
-        obj['x'] = x
+def rev(*args, **kwargs) :
+    print(args)
+    return tuple(reversed(args))
+a = 10
+b = 20
+c = 30
 
-if __name__ == '__main__':
-   # m = Mem(3, 5)
-   m = {'x': 12}
-   change(m, 6)
-   print(m['x'])
-   print("--inital sys.path --")
-   print(sys.path)
-   print("--inital PYTHONPATH--")
-   print('exists' if 'PYTHONPATH' in os.environ else 'none')
+print("a={} b={} c={}".format(a, b, c))
 
-   
-   sys.path.append('/Users/yoshitaka.toyama/sample')
-   sys.path.append('/Users/yoshitaka.toyama/sample')
-   print(sys.path)
-   import tmppy
-   print(tmppy.AAA(2))
+a, b, c = rev(a, b, c)
+# a, b, c = b, c, a
+
+print("a={} b={} c={}".format(a, b, c))
+
+pprint(rev(a,b,c))
+# zip
+# itertools

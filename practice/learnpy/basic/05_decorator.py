@@ -22,10 +22,13 @@ print(ret)
 
 
 # variable  decolator
+""" decorator with arguments """
 def decarg(label_no):
+    """ define decorator_method, argument is function """
     def _decorator_method(func):
+        """ define decorator_method, argument is function """
         def wrapper(*args, **kwargs):
-            print("--start label_no:{} args:{} kwargs:{}".format(int(label_no), str(args), str(kwargs)))
+            print("--start label_no:{} args:{} kwargs:{}".format(str(label_no), str(args), str(kwargs)))
             new_arg = (args[0], args[1] + "&" + str(label_no))
             result = func(*new_arg, **kwargs)
             print("--end--")
@@ -33,7 +36,8 @@ def decarg(label_no):
         return wrapper
     return _decorator_method
 
-@decarg(10)
+SOMEONE = 'KEN'
+@decarg(SOMEONE)
 def main2(message, option) -> str:
     print("message:{} option:".format(message, option))
     return message + ':' + option
