@@ -94,3 +94,13 @@ main = do
     -- fromIntegral bring you to converting Int or Integer to Num class.
     let inte = fromIntegral(20::Integer) 
     print(sin inte)
+
+
+    print("== tupple  ==")
+    let tl1 = [(1,2), (2,3), (2,4), (1,4)]
+    print([a + b | (a,b) <- tl1])
+    -- filter value matching '1'
+    print([b + 1000 | (1,b) <- tl1])
+
+
+

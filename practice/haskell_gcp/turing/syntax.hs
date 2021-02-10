@@ -37,6 +37,8 @@ main = do
     print(['P','E'] ++ ['E','R'])
     print("--- list cons operator, and push first index.  --")
     print(4:l1)
+    print(5:6:l1)
+    print(1:2:_)
     print("--- access part of list by index.   --")
     print(l1 !! 1)
     print("--- access part of list by index.   --")

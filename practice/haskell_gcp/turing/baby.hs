@@ -18,3 +18,8 @@ threeSome x y z = x * 3 + y * 3 + z * 3
 -- 2020/12/01 maybe, 部分関数, isPresent ifPresent, map, flatMap, Optional 条件分岐をカプセル化、ない場合を意識しなくていい。　ファンクタ
 
 
+{-
+
+
+
+-}
