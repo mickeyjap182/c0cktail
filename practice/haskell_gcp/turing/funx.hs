@@ -12,6 +12,11 @@ import Text.Printf
 global_version :: Double
 global_version = 2.1
 
+-- return first argument 'a'
+first a b  = a
+-- re-entrant formula has never end.
+reent a = reent (a - 1)
+
 main = do 
     print("-- if must be return value. so 'else' is necessary. ")
     let b = 200 :: Float
@@ -86,6 +91,12 @@ main = do
     let r = 2.0 :: Double 
         h = 3.0 :: Double
     print(cylinder r h)
+
+    print("== 'first 6 (reent 4)' will be accompleshed. Because, 'first 6 x' always returns 6, and there is no necessary to evaluate re-entrant formula 'reent 4' as 'x'. ==")
+    print(first 6 (reent 4))
+
+
+
 
     {- 関数コール不可のため要検証
     let tu1 = ((2.0 , 3.0)) :: (Double,Double)
